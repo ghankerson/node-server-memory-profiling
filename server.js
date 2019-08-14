@@ -1,10 +1,14 @@
 
 const http = require('http')
 const port = 3000
+const fetch = require('node-fetch')
 
 const requestHandler = (request, response) => {
-  console.log(request.url)
-  response.end('Hello Node.js Server!')
+fetch('https://google.com/')
+    .then(res => res.text())
+    .then(body => {
+      response.end(body)
+    } );
 }
 
 const server = http.createServer(requestHandler)

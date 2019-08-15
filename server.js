@@ -4,10 +4,11 @@ const port = 3000
 const fetch = require('node-fetch')
 
 const requestHandler = (request, response) => {
-fetch('https://google.com/')
-    .then(res => res.text())
-    .then(body => {
-      response.end(body)
+fetch('https://cms.splendidtable.org/api/home')
+    .then(res => res.json())
+    .then(json => {
+      response.setHeader('Content-Type', 'text/plain')
+      response.end(`${json['field_top_row_of_4'][0].title}`)
     } );
 }
 
